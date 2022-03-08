@@ -29,4 +29,18 @@
       src: /usr/share/doc/sssd-common/sssd-example.conf
       dest: /etc/sssd/sssd.conf
      
-
+  - name: Join Realm
+    expect:
+      command: /bin/bash -c "/usr/sbin/realm join cis.ccsd.net --computer-ou='{{ realm_ad_ou }}' --user={{ kerberos_user }}"
+      responses:
+        (?i)Password: "{{ kerberos_user_password }}"  
+      
+  - name: sssd-restart
+    service:
+      name: sssd
+      state: restarted
+    
+  - name: realmd-restart
+    service:
+      name: realmd
+      state: restarted
