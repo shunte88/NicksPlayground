@@ -6,5 +6,4 @@
   tasks:
   - name: update all packages
     yum:
-      name: update
-      state: latest
+      update_only: yes
