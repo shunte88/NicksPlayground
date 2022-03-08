@@ -47,7 +47,19 @@
      
   - name: Realm Allow Alien Vault Service Account
     command: /bin/bash -c "realm permit ansible@cis.ccsd.net"
+    
+  - name: Create sudoers file backup
+    command: cp -f /etc/sudoers /etc/sudoers.backup
      
+  - name: Copy suders file for safety
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+     
+  - name: Add domain admins group to sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present line='%cis.ccsd.net\\linuxadmins  ALL=(ALL)       ALL'
+
+  - name: Final sudoers file check
+    shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+   
   - name: sssd-restart
     service:
       name: sssd
