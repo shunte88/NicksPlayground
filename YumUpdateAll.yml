@@ -12,5 +12,5 @@
   
   - name: Reboot system
     ansible.builtin.reboot
-      msg: "system rebooted by Ansible via YumUpdateAll Playbook"
+      msg: system rebooted by Ansible via YumUpdateAll Playbook
       reboot_command: "init 6"
