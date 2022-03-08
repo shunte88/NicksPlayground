@@ -34,10 +34,7 @@
         (?i)Password: "{{ kerberos_user_password }}"  
         
   - name: Base Config for Realm
-    command: 
-      - realm deny --all
-      - realm permit -g linuxadmins@cis.ccsd.net
-
+    command: -f realm deny --all
       
   - name: sssd-restart
     service:
