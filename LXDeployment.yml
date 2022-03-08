@@ -78,6 +78,22 @@
     service:
       name: realmd
       state: restarted
+      
+  - name: Installing / Updating Chrony
+    yum:
+      name: chrony
+      state: latest
+    register: results
+
+  - name: Copy Chrony config to system
+    copy:
+      src: chrony.conf
+      dest: /etc/chrony.conf
+      
+   - name: realmd-restart
+     service:
+       name: chronyd
+       state: restarted
 
   - name: Reboot system
     reboot: 
