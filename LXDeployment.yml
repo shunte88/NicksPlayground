@@ -54,8 +54,17 @@
   - name: Copy suders file for safety
     command: cp -f /etc/sudoers /etc/sudoers.tmp
      
-  - name: Add domain admins group to sudoers
+  - name: Add domain sys admins group to sudoers
     lineinfile: dest=/etc/sudoers.tmp state=present line='%cis.ccsd.net\\linuxadmins  ALL=(ALL)       ALL'
+    
+  - name: Add domain operators group to sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present line='%cis.ccsd.net\\linux_operators  ALL=(ALL)       ALL'
+    
+  - name: Add domain alienvault service account to sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present line='avservice@cis.ccsd.net ALL=(ALL)     ALL'
+    
+  - name: Add domain ansible service account to sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present line='Ansible@cis.ccsd.net ALL=(ALL)     ALL'
 
   - name: Final sudoers file check
     shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
