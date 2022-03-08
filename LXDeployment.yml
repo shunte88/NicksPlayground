@@ -34,10 +34,12 @@
         (?i)Password: "{{ kerberos_user_password }}"  
         
   - name: Base Config for Realm
-    expect:
-      command: 
-        - /bin/bash -c "realm deny --all"
-        - /bin/bash -c "realm permit -g linuxadmins@cis.ccsd.net"
+    command: 
+      - /bin/bash -c "realm deny --all"
+      - /bin/bash -c "realm permit -g linuxadmins@cis.ccsd.net"
+      - /bin/bash -c "realm permit -g linux_operators@cis.ccsd.net"
+      - /bin/bash -c "realm permit avservice@cis.ccsd.net"
+      - /bin/bash -c "realm permit ansible@cis.ccsd.net"
       
   - name: sssd-restart
     service:
