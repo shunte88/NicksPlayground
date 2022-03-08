@@ -1,0 +1,10 @@
+---
+- name: Package Check
+  hosts: all
+  become: true
+  
+  tasks:
+  - name: update all packages
+    yum:
+      name: update
+      state: latest
