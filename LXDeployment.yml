@@ -33,9 +33,21 @@
       responses:
         (?i)Password: "{{ kerberos_user_password }}"  
         
-  - name: Base Config for Realm
+  - name: Realm Deny all Connections
     command: /bin/bash -c "realm deny --all"
        
+  - name: Realm Allow Sys Admin Group
+    command: /bin/bash -c "realm permit -g linuxadmins@cis.ccsd.net"
+    
+  - name: Realm Allow Operators Group
+    command: /bin/bash -c "realm permit -g linux_operators@cis.ccsd.net"
+       
+  - name: Realm Allow Alien Vault Service Account
+    command: /bin/bash -c "realm permit avservice@cis.ccsd.net"
+     
+  - name: Realm Allow Alien Vault Service Account
+    command: /bin/bash -c "realm permit ansible@cis.ccsd.net"
+     
   - name: sssd-restart
     service:
       name: sssd
