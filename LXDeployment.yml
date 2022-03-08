@@ -3,7 +3,6 @@
   hosts: all
   become: true
   vars:
-    adpassword: "survey"
     kerberos_user: "survey"
     realm_ad_ou: "survey"
     kerberos_user_password: "survey"
