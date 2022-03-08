@@ -9,7 +9,7 @@
       name: "*"
       update_only: yes
       state: latest
-      register: result
+    register: result
   
   - name: Reboot system
     reboot: 
