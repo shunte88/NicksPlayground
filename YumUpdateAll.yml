@@ -7,3 +7,8 @@
   - name: update all packages
     yum:
       update_only: yes
+      state: latest
+      
+  - name: Check for updates
+    yum:
+      list: updates
