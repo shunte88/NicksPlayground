@@ -33,14 +33,14 @@
     responses:
       (?i)Password: "{{ kerberos_user_password }}"  
   - name: sssd-restart
-  service:
-    name: sssd
-    state: restarted
+    service:
+      name: sssd
+      state: restarted
     
   - name: realmd-restart
-  service:
-    name: realmd
-    state: restarted
+    service:
+      name: realmd
+      state: restarted
   
   - name: Reboot system
     reboot: 
