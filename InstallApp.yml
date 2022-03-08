@@ -1,12 +1,12 @@
 ---
 - name: Install Package
   hosts: all
-  become: yes
+  become: true
   var:
     package: "sssd"
     
   tasks:
   - name: Install or update package
     yum:
-      name: {{ package }}
+      name: [ package ]
       state: latest
