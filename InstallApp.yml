@@ -10,12 +10,12 @@
     yum:
       name: "{{ package }}"
       state: latest
-
-    - name: Gather the package facts
-      ansible.builtin.package_facts:
-        manager: auto
+      
+  - name: Gather the package facts
+    ansible.builtin.package_facts:
+      manager: auto
         
-    - name: Check whether a {{ package }}  is installed
+  - name: Check whether a {{ package }}  is installed
       ansible.builtin.debug:
         msg: "{{ package }} {{ ansible_facts.packages[ package ][0].version }} is installed!"
       when: "package in ansible_facts.packages"
