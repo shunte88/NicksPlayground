@@ -1,16 +1,11 @@
 ---
-- name: Install Apache Server
+- name: Package Check
   hosts: all
   become: true
   vars:
     package: "httpd"
     
   tasks:
-  - name: Latest Apache Version Installed
-    yum:
-      name: httpd
-      state: latest
-      
   - name: Gather Facts
     ansible.builtin.package_facts:
       manager: auto
