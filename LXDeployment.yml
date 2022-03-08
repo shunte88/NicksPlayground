@@ -1,0 +1,48 @@
+---
+- name: Linux Deployment workbook
+  hosts: all
+  become: true
+  vars:
+    adpassword: "survey"
+    kerberos_user: "survey"
+    realm_ad_ou: "survey"
+    kerberos_user_password: "survey"
+    
+  tasks:
+  - name: update all packages
+    yum:
+      name: "*"
+      update_only: yes
+      state: latest
+    register: result
+  
+  - name: Install Realmd & samba-common-tools
+    yum:
+      name: 
+        - realmd
+        - samba-common-tools
+      state: latest
+    register: results
+    
+  - name: Copy SSSD Config to /etc/sssd
+    copy:
+      src: /usr/share/doc/sssd-common/sssd-example.conf
+      dest: /etc/sssd/sssd.conf
+     
+  - name: Join Realm
+    command: /bin/bash -c "/usr/sbin/realm join cis.ccsd.net --computer-ou='{{ realm_ad_ou }}' --user='{{ kerberos_user }}'"
+    responses:
+      (?i)Password: "{{ kerberos_user_password }}"  
+  - name: sssd-restart
+  service:
+    name: sssd
+    state: restarted
+    
+  - name: realmd-restart
+  service:
+    name: realmd
+    state: restarted
+  
+  - name: Reboot system
+    reboot: 
+      msg: System has been rebooted by Ansible with YumUpdateAll playbook
