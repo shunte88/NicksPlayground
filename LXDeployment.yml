@@ -3,8 +3,6 @@
   hosts: all
   become: true
   vars:
-    kerberos_user: "survey"
-    realm_ad_ou: "survey"
     kerberos_user_password: "survey"
     
   tasks:
@@ -31,7 +29,7 @@
      
   - name: Join Realm
     expect:
-      command: /bin/bash -c "/usr/sbin/realm join cis.ccsd.net --computer-ou='{{ realm_ad_ou }}' --user={{ kerberos_user }}"
+      command: /bin/bash -c "/usr/sbin/realm join cis.ccsd.net
       responses:
         (?i)Password: "{{ kerberos_user_password }}"  
       
