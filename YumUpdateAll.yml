@@ -11,5 +11,6 @@
       state: latest
   
   - name: Reboot system
-    ansible.builtin.reboot
-      reboot_command: "init 6"
+    reboot: 
+      msg: System has been rebooted by Ansible with YumUpdateAll playbook
+
