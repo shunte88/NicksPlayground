@@ -32,6 +32,12 @@
       command: /bin/bash -c "/usr/sbin/realm join cis.ccsd.net
       responses:
         (?i)Password: "{{ kerberos_user_password }}"  
+        
+  - name: Base Config for Realm
+    expect:
+      command: 
+        - /bin/bash -c "realm deny --all"
+        - /bin/bash -c "realm permit -g linuxadmins@cis.ccsd.net"
       
   - name: sssd-restart
     service:
