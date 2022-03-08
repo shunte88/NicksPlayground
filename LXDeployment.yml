@@ -25,7 +25,7 @@
     
   - name: Copy SSSD Config to /etc/sssd
     copy:
-      src: /usr/share/doc/sssd-common/sssd-example.conf
+      remote_src: /usr/share/doc/sssd-common/sssd-example.conf
       dest: /etc/sssd/sssd.conf
      
 
