@@ -6,9 +6,7 @@
   tasks:
   - name: update all packages
     yum:
+      name: "*"
       update_only: yes
       state: latest
-      
-  - name: Check for updates
-    yum:
-      list: updates
+
