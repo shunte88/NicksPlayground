@@ -34,8 +34,8 @@
         (?i)Password: "{{ kerberos_user_password }}"  
         
   - name: Base Config for Realm
-    command: -f realm deny --all
-      
+    command: /bin/bash -c "realm deny --all"
+       
   - name: sssd-restart
     service:
       name: sssd
