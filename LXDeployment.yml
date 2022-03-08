@@ -78,3 +78,8 @@
     service:
       name: realmd
       state: restarted
+
+  - name: Reboot system
+    reboot: 
+      msg: System has been rebooted by Ansible with YumUpdateAll playbook
+      
