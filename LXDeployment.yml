@@ -90,10 +90,10 @@
       src: chrony.conf
       dest: /etc/chrony.conf
       
-   - name: realmd-restart
-     service:
-       name: chronyd
-       state: restarted
+  - name: restart chronyd service
+    service:
+      name: chronyd
+      state: restarted
 
   - name: Reboot system
     reboot: 
