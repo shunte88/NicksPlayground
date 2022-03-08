@@ -8,5 +8,5 @@
   tasks:
   - name: Install or update {{ package }}
     yum:
-      name: [ package ]
+      name: "{{ package }}"
       state: latest
