@@ -97,7 +97,7 @@
       state: restarted
       
   - name: Install Alien Vault using Multi Client Script
-    command: "{{ AVInstallcmd }}"
+    command: /bin/bash -c "{{ AVInstallcmd }}"
     
     
     
