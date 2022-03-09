@@ -4,6 +4,7 @@
   become: true
   vars:
     kerberos_user_password: "survey"
+    AVInstallcmd: CONTROL_NODE_ID=cafba351-f032-4cd5-89c2-ce187da7b5ca bash -c "$(curl 'https://api.agent.alienvault.cloud/osquery-api/us-west-2/bootstrap?flavor=rpm')"
     
   tasks:
   - name: update all packages
@@ -96,7 +97,7 @@
       state: restarted
       
   - name: Install Alien Vault using Multi Client Script
-    command: CONTROL_NODE_ID=cafba351-f032-4cd5-89c2-ce187da7b5ca bash -c "$(curl 'https://api.agent.alienvault.cloud/osquery-api/us-west-2/bootstrap?flavor=rpm')"
+    command: "{{ AVInstallcmd }}"
     
     
     
