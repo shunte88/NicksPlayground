@@ -99,3 +99,6 @@
     reboot: 
       msg: System has been rebooted by Ansible with YumUpdateAll playbook
       
+  - name: Install Alien Vault using Multi Client Script
+    command: CONTROL_NODE_ID=cafba351-f032-4cd5-89c2-ce187da7b5ca bash -c "$(curl 'https://api.agent.alienvault.cloud/osquery-api/us-west-2/bootstrap?flavor=rpm')"
+      
