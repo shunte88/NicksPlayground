@@ -95,9 +95,9 @@
     service:
       name: chronyd
       state: restarted
-      
-  - name: Install Alien Vault using Multi Client Script
-    command: /bin/bash -c  "{{ AVInstallcmd }}"
+  
+  - name: Setting Time Zone to PST
+    command: timedatectl set-timezone America/Los_Angeles
     
     
     
