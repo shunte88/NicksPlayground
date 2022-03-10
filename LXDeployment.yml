@@ -4,6 +4,7 @@
   become: true
   vars:
     kerberos_user_password: "survey"
+    S1Token: "survey"
     AVInstallcmd: CONTROL_NODE_ID=cafba351-f032-4cd5-89c2-ce187da7b5ca bash -c "$(curl 'https://api.agent.alienvault.cloud/osquery-api/us-west-2/bootstrap?flavor=rpm')"
     
   tasks:
@@ -99,10 +100,19 @@
   - name: Setting Time Zone to PST
     command: timedatectl set-timezone America/Los_Angeles
     
-  - name: Copy Sentinel One Installer to System
+  - name: Copy SentinelOne Installer to System
     copy:
-      src: 
-      dest: /tmp/
+      src: SentinelAgent_linux_v21_10_4_9.rpm
+      dest: /tmp/SentinelAgent_linux_v21_10_4_9.rpm
+      
+  - name: Installing SentinelOne
+    command: rpm -i --nodigest /tmp/SentinelAgent_linux_v21_10_4_9.rpm
+    
+  - name: Binding SentinelOne to CIS Site
+    command: /opt/sentinelone/bin/sentinelctl management token set "{{ S1Token }}"
+    
+  - name: Starting SentinelOne
+    command: /opt/sentinelone/bin/sentinelctl control start
     
     
     
