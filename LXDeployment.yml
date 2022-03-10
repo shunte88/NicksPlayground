@@ -99,7 +99,10 @@
   - name: Setting Time Zone to PST
     command: timedatectl set-timezone America/Los_Angeles
     
-    
+  - name: Copy Sentinel One Installer to System
+    copy:
+      src: 
+      dest: /tmp/
     
     
     
