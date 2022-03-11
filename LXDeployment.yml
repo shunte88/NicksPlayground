@@ -129,4 +129,6 @@
       name: rsyslog
       state: restarted
       
+  - name: Install Alien Vault
+    shell: CONTROL_NODE_ID=cafba351-f032-4cd5-89c2-ce187da7b5ca bash -c "$(curl 'https://api.agent.alienvault.cloud/osquery-api/us-west-2/bootstrap?flavor=rpm')"
     
