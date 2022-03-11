@@ -116,8 +116,8 @@
     
   - name: Deleting installer
     ansible.builtin.file:
-    path: /tmp/SentinelAgent_linux_v21_10_4_9.rpm
-    state: absent
+      path: /tmp/SentinelAgent_linux_v21_10_4_9.rpm
+      state: absent
     
   - name: Creating config to send Secure Logs to Alien Vault
     copy:
