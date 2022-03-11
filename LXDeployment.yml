@@ -129,5 +129,4 @@
       name: rsyslog
       state: restarted
       
-  - name: Install Alienvault Agent
     
