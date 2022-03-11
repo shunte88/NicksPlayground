@@ -124,32 +124,10 @@
       src: alienvault.conf
       dest: /etc/rsyslog.d/alienvault.conf
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+  - name: Restart syslog
+    ansible.builtin.service:
+      name: rsyslog
+      state: restarted
       
+  - name: Install Alienvault Agent
+    
