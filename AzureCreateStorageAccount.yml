@@ -1,8 +1,10 @@
 ---
 - name: Using Azure collection
   hosts: localhost
+  collections:
+    - azure.azcollection
   tasks:
-    - azure.azcollection.azure_rm_storageaccount:
+    - azure_rm_storageaccount:
         resource_group: RG-C-TEST-CIS-CIS
         name: Ansibletest
         account_type: Standard_LRS
